@@ -37,7 +37,7 @@ def build_rag_service(settings: Settings) -> RagService:
 
     embeddings = HuggingFaceEmbeddings(model_name=settings.embedding_model)
     vector_store = build_or_load_index(
-        pdf_path=settings.pdf_path,
+        pdf_dir=settings.pdf_dir,
         index_dir=settings.index_dir,
         embeddings=embeddings,
         chunk_size=settings.chunk_size,
@@ -54,7 +54,7 @@ def build_rag_service(settings: Settings) -> RagService:
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     settings = get_settings()
-    logger.info("starting up: pdf=%s index_dir=%s", settings.pdf_path, settings.index_dir)
+    logger.info("starting up: pdf_dir=%s index_dir=%s", settings.pdf_dir, settings.index_dir)
     app.state.settings = settings
     app.state.rag = build_rag_service(settings)
     logger.info("startup complete")

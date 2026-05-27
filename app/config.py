@@ -7,7 +7,7 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
     gemini_api_key: str = ""
-    pdf_path: Path = Path("Gilbert_Strang_Linear_Algebra_and_Its_Applicatio_230928_225121.pdf")
+    pdf_dir: Path = Path("pdfs")
     index_dir: Path = Path("index")
     embedding_model: str = "all-MiniLM-L6-v2"
     llm_model: str = "gemini-2.5-flash-lite"
