@@ -16,11 +16,11 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY app ./app
-COPY Gilbert_Strang_Linear_Algebra_and_Its_Applicatio_230928_225121.pdf ./
+COPY pdfs ./pdfs
 
 RUN mkdir -p /app/index /app/.cache/huggingface
 
-VOLUME ["/app/index"]
+VOLUME ["/app/pdfs", "/app/index"]
 
 EXPOSE 8000
 
